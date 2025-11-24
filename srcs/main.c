@@ -6,19 +6,33 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/24 15:28:57 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/24 16:13:55 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stack.h"
 
+static int	first_fill_stack(t_stack a, int argc, char **argv)
+{
+	int	i;
+	char	*end;
+
+	i = 0;
+	while (i < argc - 1)
+	{
+		a.stack[i] = ft_strtoi(argv[i + 1], &end);
+		if (*end)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-	size_t	i;
-	char	*end;
 
 	a.stack = ft_calloc(argc - 1, sizeof(int));
 	if (!a.stack)
@@ -31,19 +45,11 @@ int	main(int argc, char **argv)
 	}
 	a.size = argc - 1;
 	b.size = 0;
-	i = 0;
-	while ((int) i < argc)
+	if (first_fill_stack(a, argc, argv))
 	{
-		a.stack[i] = ft_strtoi(argv[i], &end);
-		if (!*end)
-		{
-			free(a.stack);
-			free(b.stack);
-			return (2);
-		}
-		i++;
+		free(a.stack);
+		free(b.stack);
+		return (2);
 	}
-	i = 0;
-	while (i < a.size)
-		ft_printf("%d\n", a.stack[i++]);
+	return (0);
 }
