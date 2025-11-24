@@ -6,7 +6,8 @@ INCLUDES = -Ilibft/includes -Iincludes
 CFLAGS = -Werror -Wextra -Wall -MD $(INCLUDES)
 
 VPATH = srcs
-SRCS = main.c
+SRCS = main.c\
+	   stack_operations.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)

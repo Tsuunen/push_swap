@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/24 16:13:55 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/24 17:05:15 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ static int	first_fill_stack(t_stack a, int argc, char **argv)
 		i++;
 	}
 	return (0);
+}
+
+static void	print_stack(t_stack s)
+{
+	size_t	i;
+
+	i = 0;
+	ft_printf("[ ");
+	while (i < s.size)
+	{
+		ft_printf("%d", s.stack[i++]);
+		if (i < s.size)
+			ft_printf(", ");
+	}
+	ft_printf(" ]\n");
 }
 
 int	main(int argc, char **argv)
@@ -51,5 +66,11 @@ int	main(int argc, char **argv)
 		free(b.stack);
 		return (2);
 	}
+	print_stack(a);
+	print_stack(b);
+	push(&a, &b);
+	ft_printf("%d\n", (int) b.size);
+	print_stack(a);
+	print_stack(b);
 	return (0);
 }
