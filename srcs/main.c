@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:40:54 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/25 09:48:42 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ int	main(int argc, char **argv)
 	}
 	print_stack(a);
 	print_stack(b);
-	push(&a, &b);
+	rotate_reverse(a);
 	print_stack(a);
 	print_stack(b);
-	push(&a, &b);
+	rotate_reverse(a);
 	print_stack(a);
 	print_stack(b);
 	return (0);

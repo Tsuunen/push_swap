@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:43:34 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/25 09:50:28 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,21 @@ int	push(t_stack *from, t_stack *to)
 	to->size += 1;
 	shift_reverse(*from);
 	from->size -= 1;
+	return (0);
+}
+
+int	rotate_reverse(t_stack s)
+{
+	if (s.size <= 0)
+		return (1);
+	s.stack[0] = shift(s);
+	return (0);
+}
+
+int	rotate(t_stack s)
+{
+	if (s.size <= 0)
+		return (1);
+	s.stack[s.size - 1] = shift_reverse(s);
 	return (0);
 }

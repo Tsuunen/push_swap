@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/24 17:06:03 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/25 09:48:14 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ typedef struct
 int	swap(t_stack s);
 int	push(t_stack *from, t_stack *to);
 int	rotate(t_stack s);
-int	reverse_rotate(t_stack s);
+int	rotate_reverse(t_stack s);
 
 #endif
