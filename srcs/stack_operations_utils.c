@@ -1,31 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   stack_operations_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:56:09 by relaforg         ###   ########.fr       */
+/*   Created: 2025/11/25 09:55:44 by relaforg          #+#    #+#             */
+/*   Updated: 2025/11/25 09:55:53 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#include "stack.h"
 
-#include <stddef.h>
-
-typedef struct
+int	shift(t_stack s)
 {
-	int	*stack;
-	size_t	size;
-}	t_stack;
+	size_t	i;
+	int		tmp;
 
-int	swap(t_stack s);
-int	push(t_stack *from, t_stack *to);
-int	rotate(t_stack s);
-int	rotate_reverse(t_stack s);
-int	shift_reverse(t_stack s);
-int	shift(t_stack s);
+	i = s.size - 1;
+	tmp = s.stack[i];
+	while (i > 0)
+	{
+		s.stack[i] = s.stack[i - 1];
+		i--;
+	}
+	return (tmp);
+}
 
-#endif
+int	shift_reverse(t_stack s)
+{
+	size_t	i;
+	int		tmp;
+
+	i = 0;
+	tmp = s.stack[i];
+	while (i < s.size - 1)
+	{
+		s.stack[i] = s.stack[i + 1];
+		i++;
+	}
+	return (tmp);
+}

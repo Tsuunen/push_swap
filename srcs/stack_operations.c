@@ -6,41 +6,11 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:50:28 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/25 10:00:33 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-
-int	shift(t_stack s)
-{
-	size_t	i;
-	int		tmp;
-
-	i = s.size - 1;
-	tmp = s.stack[i];
-	while (i > 0)
-	{
-		s.stack[i] = s.stack[i - 1];
-		i--;
-	}
-	return (tmp);
-}
-
-int	shift_reverse(t_stack s)
-{
-	size_t	i;
-	int		tmp;
-
-	i = 0;
-	tmp = s.stack[i];
-	while (i < s.size - 1)
-	{
-		s.stack[i] = s.stack[i + 1];
-		i++;
-	}
-	return (tmp);
-}
 
 int	swap(t_stack s)
 {

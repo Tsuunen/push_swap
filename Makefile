@@ -7,7 +7,8 @@ CFLAGS = -Werror -Wextra -Wall -MD $(INCLUDES)
 
 VPATH = srcs
 SRCS = main.c\
-	   stack_operations.c
+	   stack_operations.c\
+	   stack_operations_utils.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
