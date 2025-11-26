@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 11:44:01 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/26 15:17:53 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@ typedef struct s_stack
 	size_t	size;
 }	t_stack;
 
+typedef struct s_best
+{
+	int	index;
+	int	steps_to_top;
+	int	steps_to_place;
+	int	dir_top;
+	int	dir_place;
+}	t_best;
+
 int	swap(t_stack s);
 int	push(t_stack *from, t_stack *to);
 int	rotate(t_stack s);
@@ -29,5 +38,8 @@ int	shift_reverse(t_stack s);
 int	shift(t_stack s);
 int	count_to_top(t_stack s, int index, int *direction);
 int	count_to_place(t_stack s, int value, int *direction);
+int	find_best(t_stack from, t_stack to, t_best *best);
+int	sort(t_stack *a, t_stack *b);
+void	print_stack(t_stack s);
 
 #endif

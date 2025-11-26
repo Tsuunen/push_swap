@@ -4,15 +4,21 @@ BUILD_DIR := .build
 LIBFT = libft/libft.a
 INCLUDES = -Ilibft/includes -Iincludes
 CFLAGS = -Werror -Wextra -Wall -MD $(INCLUDES)
+MODE ?= release
 
 VPATH = srcs
 SRCS = main.c\
 	   stack_operations.c\
 	   stack_operations_utils.c\
-	   sort_utils.c
+	   sort_utils.c\
+	   sort.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
+
+ifeq ($(MODE), debug)
+	CFLAGS += -g3
+endif
 
 all: libft $(NAME)
 	@echo $(SRCS)
