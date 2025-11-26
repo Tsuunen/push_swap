@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:54:20 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 11:08:56 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:25:15 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,15 @@ int	count_to_top(t_stack s, int index, int *direction)
 
 int	count_to_place(t_stack s, int value, int *direction)
 {
-	int	max;
 	int	min;
 	int	tmp;
 
 	if (s.size < 2)
 		return (0);
-	max = find_max(s);
+	tmp = find_max(s);
 	min = find_min(s);
-	if (value >= s.stack[max])
-		return (count_to_top(s, max, direction));
+	if (value >= s.stack[tmp])
+		return (count_to_top(s, tmp, direction));
 	if (value <= s.stack[min])
 	{
 		tmp = count_to_top(s, min, direction);
@@ -77,12 +76,11 @@ int	count_to_place(t_stack s, int value, int *direction)
 			return (tmp + 1);
 		return (tmp - 1);
 	}
-	if (value >= s.stack[0] && value <= s.stack[s.size - 1])
-		return (0);
-	tmp = 1;
+	tmp = 0;
 	while ((size_t) tmp < s.size)
 	{
-		if (value >= s.stack[tmp] && value <= s.stack[tmp - 1])
+		if (value >= s.stack[tmp]
+			&& value <= s.stack[(tmp - 1 + s.size) % s.size])
 			return (count_to_top(s, tmp, direction));
 		tmp++;
 	}
