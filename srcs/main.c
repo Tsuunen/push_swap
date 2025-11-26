@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:48:42 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:09:24 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,7 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	print_stack(a);
-	print_stack(b);
-	rotate_reverse(a);
-	print_stack(a);
-	print_stack(b);
-	rotate_reverse(a);
-	print_stack(a);
-	print_stack(b);
+	int	direction;
+	ft_printf("%d : toward %d\n", count_to_place(a, 2, &direction), direction);
 	return (0);
 }

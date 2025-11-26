@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 09:56:09 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/25 15:11:21 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	rotate(t_stack s);
 int	rotate_reverse(t_stack s);
 int	shift_reverse(t_stack s);
 int	shift(t_stack s);
+int	count_to_top(t_stack s, int index, int *direction);
+int	count_to_place(t_stack s, int value, int *direction);
 
 #endif
