@@ -6,18 +6,18 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 15:03:49 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 15:11:21 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:44:01 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
 
-#include <stddef.h>
+# include <stddef.h>
 
-typedef struct
+typedef struct s_stack
 {
-	int	*stack;
+	int		*stack;
 	size_t	size;
 }	t_stack;
 

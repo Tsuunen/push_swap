@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 11:26:04 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/26 11:44:43 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	first_fill_stack(t_stack a, int argc, char **argv)
 {
-	int	i;
+	int		i;
 	char	*end;
 
 	i = 0;
@@ -66,8 +66,5 @@ int	main(int argc, char **argv)
 		free(b.stack);
 		return (2);
 	}
-	print_stack(a);
-	int	direction;
-	ft_printf("%d : toward %d\n", count_to_place(a, 2, &direction), direction);
 	return (0);
 }
