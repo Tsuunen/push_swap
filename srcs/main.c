@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 15:17:41 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 10:39:00 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	sort(&a, &b);
-	print_stack(a);
-	print_stack(b);
 	free(a.stack);
 	free(b.stack);
 	return (0);

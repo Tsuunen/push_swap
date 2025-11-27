@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:54:20 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/26 16:58:45 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 10:47:06 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,40 @@ int	count_to_place(t_stack s, int value, int *direction)
 	{
 		if (value >= s.stack[tmp]
 			&& value <= s.stack[(tmp - 1 + s.size) % s.size])
+			return (count_to_top(s, tmp, direction));
+		tmp++;
+	}
+	return (-1);
+}
+
+int	count_to_place_reverse(t_stack s, int value, int *direction)
+{
+	int	min;
+	int	tmp;
+
+	if (s.size < 2)
+		return (0);
+	tmp = find_max(s);
+	min = find_min(s);
+	if (value < s.stack[min])
+		return (count_to_top(s, min, direction));
+	if (value > s.stack[tmp])
+	{
+		if (tmp == 0)
+		{
+			*direction = 0;
+			return (1);
+		}
+		min = count_to_top(s, tmp, direction);
+		if (*direction == 0)
+			return (min + 1);
+		return (min - 1);
+	}
+	tmp = 0;
+	while ((size_t) tmp < s.size)
+	{
+		if (value <= s.stack[tmp]
+			&& value >= s.stack[(tmp - 1 + s.size) % s.size])
 			return (count_to_top(s, tmp, direction));
 		tmp++;
 	}
