@@ -6,22 +6,26 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 14:23:04 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 10:39:00 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:47:37 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "stack.h"
 
-static int	first_fill_stack(t_stack a, int argc, char **argv)
+static int	init_stacks(t_stack *a, t_stack *b, int argc, char **argv)
 {
 	int		i;
 	char	*end;
 
 	i = 0;
+	a->size = argc - 1;
+	b->size = 0;
+	a->name = 'a';
+	b->name = 'b';
 	while (i < argc - 1)
 	{
-		a.stack[i] = ft_strtoi(argv[i + 1], &end);
+		a->stack[i] = ft_strtoi(argv[i + 1], &end);
 		if (*end)
 			return (1);
 		i++;
@@ -58,9 +62,7 @@ int	main(int argc, char **argv)
 		free(a.stack);
 		return (1);
 	}
-	a.size = argc - 1;
-	b.size = 0;
-	if (first_fill_stack(a, argc, argv))
+	if (init_stacks(&a, &b, argc, argv))
 	{
 		free(a.stack);
 		free(b.stack);

@@ -13,7 +13,8 @@ SRCS = main.c\
 	   sort_utils.c\
 	   sort.c\
 	   sort_utils_reverse.c\
-	   stack_utils.c
+	   stack_utils.c\
+	   stack_complex_operations.c
 
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)

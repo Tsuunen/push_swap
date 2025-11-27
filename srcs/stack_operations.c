@@ -6,11 +6,12 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 16:21:46 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/25 10:00:33 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:56:17 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+#include "libft.h"
 
 int	swap(t_stack s)
 {
@@ -21,6 +22,7 @@ int	swap(t_stack s)
 	tmp = s.stack[0];
 	s.stack[0] = s.stack[1];
 	s.stack[1] = tmp;
+	ft_printf("s%c\n", s.name);
 	return (0);
 }
 
@@ -34,6 +36,7 @@ int	push(t_stack *from, t_stack *to)
 	to->size += 1;
 	shift_reverse(*from);
 	from->size -= 1;
+	ft_printf("p%c\n", to->name);
 	return (0);
 }
 
