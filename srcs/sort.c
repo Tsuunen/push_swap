@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:54:52 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 13:07:40 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:55:11 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,34 @@ int	sort(t_stack *a, t_stack *b)
 	sort_3group(*a);
 	while (b->size > 0)
 	{
-		tmp = count_to_place_reverse(*a, b->stack[0], &i);
-		while (tmp)
+		find_best_reverse(*b, *a, &best);
+		tmp = 0;
+		if (best.dir_top == best.dir_place)
+			while (tmp < min(best.steps_to_top, best.steps_to_place)
+				&& best.steps_to_top && best.steps_to_place)
+			{
+				rotate_both(*a, *b, best.dir_top);
+				tmp++;
+			}
+		i = 0;
+		while (i < best.steps_to_top - tmp)
 		{
-			universal_rotate(*a, i);
-			if (!i)
+			universal_rotate(*b, best.dir_top);
+			i++;
+			if (!best.dir_top)
+				ft_printf("rb\n");
+			else
+				ft_printf("rrb\n");
+		}
+		i = 0;
+		while (i < best.steps_to_place - tmp)
+		{
+			universal_rotate(*a, best.dir_place);
+			i++;
+			if (!best.dir_place)
 				ft_printf("ra\n");
 			else
 				ft_printf("rra\n");
-			tmp--;
 		}
 		push(b, a);
 		ft_printf("pa\n");

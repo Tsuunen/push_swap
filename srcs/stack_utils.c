@@ -1,43 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations_utils.c                           :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 09:55:44 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 16:35:28 by relaforg         ###   ########.fr       */
+/*   Created: 2025/11/27 16:35:42 by relaforg          #+#    #+#             */
+/*   Updated: 2025/11/27 16:36:06 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int	shift(t_stack s)
+int	find_min(t_stack s)
 {
 	size_t	i;
-	int		tmp;
+	int		min;
 
-	i = s.size - 1;
-	tmp = s.stack[i];
-	while (i > 0)
+	i = 1;
+	min = 0;
+	while (i < s.size)
 	{
-		s.stack[i] = s.stack[i - 1];
-		i--;
-	}
-	return (tmp);
-}
-
-int	shift_reverse(t_stack s)
-{
-	size_t	i;
-	int		tmp;
-
-	i = 0;
-	tmp = s.stack[i];
-	while (i < s.size - 1)
-	{
-		s.stack[i] = s.stack[i + 1];
+		if (s.stack[i] < s.stack[min])
+			min = i;
+		else if (s.stack[i] == s.stack[min]
+			&& s.stack[(i + 1) % s.size] > s.stack[min + 1])
+			min = i;
 		i++;
 	}
-	return (tmp);
+	return (min);
+}
+
+int	find_max(t_stack s)
+{
+	size_t	i;
+	int		max;
+
+	i = 1;
+	max = 0;
+	while (i < s.size)
+	{
+		if (s.stack[i] > s.stack[max])
+			max = i;
+		else if (s.stack[i] == s.stack[max]
+			&& s.stack[i - 1] < s.stack[(max - 1 + s.size)])
+			max = i;
+		i++;
+	}
+	return (max);
 }
