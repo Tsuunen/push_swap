@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:54:20 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 16:36:12 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/11/27 16:38:07 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	count_to_place(t_stack s, int value, int *direction)
 	return (-1);
 }
 
-
 int	find_best(t_stack from, t_stack to, t_best *best)
 {
 	size_t	i;
@@ -99,4 +98,3 @@ int	find_best(t_stack from, t_stack to, t_best *best)
 	}
 	return (0);
 }
-
