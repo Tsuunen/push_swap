@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:54:52 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/02 13:34:11 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:37:45 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,15 @@ int	sort(t_stack *a, t_stack *b)
 		return (sort_2group(*a));
 	else if (a->size == 3)
 		return (sort_3group(*a));
-	push(a, b);
-	push(a, b);
-	sort_to_b(a, b);
-	if (!check_sort(*a) && a->size == 3)
-		sort_3group(*a);
-	sort_to_a(a, b);
+	if (!check_sort(*a))
+	{
+		push(a, b);
+		push(a, b);
+		sort_to_b(a, b);
+		if (!check_sort(*a) && a->size == 3)
+			sort_3group(*a);
+		sort_to_a(a, b);
+	}
 	tmp = count_to_top(*a, find_min(*a), &i);
 	while (tmp--)
 		universal_rotate(*a, i);
