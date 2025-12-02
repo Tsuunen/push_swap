@@ -1,2 +1,5 @@
 -Ilibft/includes
 -Iincludes
+-Werror
+-Wall
+-Wextra

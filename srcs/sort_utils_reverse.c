@@ -6,11 +6,32 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:34:09 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 16:35:02 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/02 14:28:20 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
+
+int	handle_max(t_stack s, int *direction)
+{
+	int	max;
+	int	tmp;
+
+	max = find_max(s);
+	if (max == 0)
+	{
+		*direction = 0;
+		return (1);
+	}
+	if (count_to_top(s, max, direction)
+		< count_to_top(s, find_max_reverse(s), direction))
+		tmp = count_to_top(s, max, direction);
+	else
+		tmp = count_to_top(s, find_max_reverse(s), direction);
+	if (*direction == 0)
+		return (tmp + 1);
+	return (tmp - 1);
+}
 
 int	manage_minmax_reverse(t_stack s, int value, int *direction)
 {
@@ -20,25 +41,21 @@ int	manage_minmax_reverse(t_stack s, int value, int *direction)
 	max = find_max(s);
 	min = find_min(s);
 	if (value < s.stack[min])
-		return (count_to_top(s, min, direction));
-	if (value > s.stack[max])
 	{
-		if (max == 0)
-		{
-			*direction = 0;
-			return (1);
-		}
-		min = count_to_top(s, max, direction);
-		if (*direction == 0)
-			return (min + 1);
-		return (min - 1);
+		if (count_to_top(s, min, direction)
+			< count_to_top(s, find_min_reverse(s), direction))
+			return (count_to_top(s, min, direction));
+		return (count_to_top(s, find_min_reverse(s), direction));
 	}
+	if (value > s.stack[max])
+		return (handle_max(s, direction));
 	return (-1);
 }
 
 int	count_to_place_reverse(t_stack s, int value, int *direction)
 {
 	int	tmp;
+	int	min;
 
 	if (s.size < 2)
 		return (0);
@@ -46,41 +63,38 @@ int	count_to_place_reverse(t_stack s, int value, int *direction)
 	if (tmp != -1)
 		return (tmp);
 	tmp = 0;
+	min = s.size;
 	while ((size_t) tmp < s.size)
 	{
 		if (value <= s.stack[tmp]
 			&& value >= s.stack[(tmp - 1 + s.size) % s.size])
-			return (count_to_top(s, tmp, direction));
+			if (min > count_to_top(s, tmp, direction))
+				min = count_to_top(s, tmp, direction);
 		tmp++;
 	}
-	return (-1);
+	return (min);
 }
 
 int	find_best_reverse(t_stack from, t_stack to, t_best *best)
 {
 	size_t	i;
-	int		tmp_top;
-	int		tmp_place;
-	int		tmp_dir_top;
-	int		tmp_dir_place;
+	t_best	tmp;
 
-	i = 0;
+	i = 1;
 	best->index = 0;
 	best->steps_to_top = count_to_top(from, 0, &best->dir_top);
 	best->steps_to_place = count_to_place_reverse(to, from.stack[0],
 			&best->dir_place);
-	while (++i < from.size)
+	compute_best_nbr_steps(best);
+	while (i < from.size)
 	{
-		tmp_top = count_to_top(from, i, &tmp_dir_top);
-		tmp_place = count_to_place_reverse(to, from.stack[i], &tmp_dir_place);
-		if (tmp_top + tmp_place < best->steps_to_top + best->steps_to_place)
-		{
-			best->index = i;
-			best->steps_to_top = tmp_top;
-			best->steps_to_place = tmp_place;
-			best->dir_top = tmp_dir_top;
-			best->dir_place = tmp_dir_place;
-		}
+		tmp.steps_to_top = count_to_top(from, i, &tmp.dir_top);
+		tmp.steps_to_place = count_to_place_reverse(to, from.stack[i],
+				&tmp.dir_place);
+		compute_best_nbr_steps(&tmp);
+		if (tmp.nbr_steps < best->nbr_steps)
+			replace_best(best, tmp, i);
+		i++;
 	}
 	return (0);
 }

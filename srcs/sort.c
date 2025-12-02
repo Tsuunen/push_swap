@@ -6,18 +6,11 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:54:52 by relaforg          #+#    #+#             */
-/*   Updated: 2025/11/27 17:13:57 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/02 13:34:11 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
-
-int	min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
 
 int	sort_3group(t_stack s)
 {
@@ -39,7 +32,7 @@ void	sort_to_b(t_stack *a, t_stack *b)
 	t_best	best;
 	int		i;
 
-	while (a->size > 3)
+	while (a->size > 3 && !check_sort(*a))
 	{
 		find_best(*a, *b, &best);
 		tmp = 0;
@@ -91,19 +84,29 @@ void	sort_to_a(t_stack *a, t_stack *b)
 	}
 }
 
+int	sort_2group(t_stack s)
+{
+	if (s.stack[0] > s.stack[1])
+		swap(s);
+	return (0);
+}
+
 int	sort(t_stack *a, t_stack *b)
 {
-	int	tmp;
-	int	i;
+	int		tmp;
+	int		i;
 
-	if (a->size < 3)
+	if (a->size < 2)
 		return (0);
+	else if (a->size == 2)
+		return (sort_2group(*a));
 	else if (a->size == 3)
 		return (sort_3group(*a));
 	push(a, b);
 	push(a, b);
 	sort_to_b(a, b);
-	sort_3group(*a);
+	if (!check_sort(*a) && a->size == 3)
+		sort_3group(*a);
 	sort_to_a(a, b);
 	tmp = count_to_top(*a, find_min(*a), &i);
 	while (tmp--)
