@@ -6,7 +6,7 @@
 /*   By: relaforg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 12:54:52 by relaforg          #+#    #+#             */
-/*   Updated: 2025/12/02 14:37:45 by relaforg         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:30:27 by relaforg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,45 @@ void	sort_to_b(t_stack *a, t_stack *b)
 	}
 }
 
+// void	sort_to_a(t_stack *a, t_stack *b)
+// {
+// 	t_best	best;
+// 	int		tmp;
+// 	int		i;
+//
+// 	while (b->size > 0)
+// 	{
+// 		find_best_reverse(*b, *a, &best);
+// 		tmp = 0;
+// 		if (best.dir_top == best.dir_place && best.steps_to_top
+// 			&& best.steps_to_place)
+// 		{
+// 			while (tmp < min(best.steps_to_top, best.steps_to_place))
+// 			{
+// 				rotate_both(*a, *b, best.dir_top);
+// 				tmp++;
+// 			}
+// 		}
+// 		i = 0;
+// 		while (i++ < best.steps_to_top - tmp)
+// 			universal_rotate(*b, best.dir_top);
+// 		i = 0;
+// 		while (i++ < best.steps_to_place - tmp)
+// 			universal_rotate(*a, best.dir_place);
+// 		push(b, a);
+// 	}
+// }
+
 void	sort_to_a(t_stack *a, t_stack *b)
 {
-	t_best	best;
-	int		tmp;
-	int		i;
+	int	tmp;
+	int	dir;
 
-	while (b->size > 0)
+	while (b->size)
 	{
-		find_best_reverse(*b, *a, &best);
-		tmp = 0;
-		if (best.dir_top == best.dir_place && best.steps_to_top
-			&& best.steps_to_place)
-		{
-			while (tmp < min(best.steps_to_top, best.steps_to_place))
-			{
-				rotate_both(*a, *b, best.dir_top);
-				tmp++;
-			}
-		}
-		i = 0;
-		while (i++ < best.steps_to_top - tmp)
-			universal_rotate(*b, best.dir_top);
-		i = 0;
-		while (i++ < best.steps_to_place - tmp)
-			universal_rotate(*a, best.dir_place);
+		tmp = count_to_place_reverse(*a, b->stack[0], &dir);
+		while (tmp--)
+			universal_rotate(*a, dir);
 		push(b, a);
 	}
 }
